@@ -1,9 +1,9 @@
-using System.Globalization;
 using System;
-using NUnit.Framework;
+using System.Globalization;
 using System.Text.Json;
-using TGS.Core.Infrastructures.Json.JsonConverters;
 using FluentAssertions;
+using NUnit.Framework;
+using TGS.Core.Infrastructures.Json.JsonConverters;
 
 namespace TGS.Core.Infrastructures.Json.Tests
 {
@@ -97,6 +97,12 @@ namespace TGS.Core.Infrastructures.Json.Tests
 
 			func.Should().NotThrow();
 			value.Should().NotBeNullOrEmpty();
+		}
+
+		[Test]
+		public void FailTest()
+		{
+			Assert.Fail();
 		}
 
 		private record Data(string Hdp, string Odds, decimal Amount);
