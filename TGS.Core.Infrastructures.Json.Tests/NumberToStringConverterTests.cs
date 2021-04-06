@@ -99,12 +99,6 @@ namespace TGS.Core.Infrastructures.Json.Tests
 			value.Should().NotBeNullOrEmpty();
 		}
 
-		[Test]
-		public void FailTest()
-		{
-			Assert.Fail();
-		}
-
 		private record Data(string Hdp, string Odds, decimal Amount);
 	}
 }

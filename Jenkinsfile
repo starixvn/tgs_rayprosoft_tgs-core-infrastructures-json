@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'dotnet build -c $BuildConfiguration "./TGS.Core.Infrastructures.Json/TGS.Core.Infrastructures.Json.csproj"'
+                sh 'dotnet build -c $BuildConfiguration'
             }
         }
 
 		stage('Test') {
 			steps {
-				sh 'dotnet test TGS.Core.Infrastructures.Json.sln -c $BuildConfiguration --logger trx --no-build'
+				sh 'dotnet test -c $BuildConfiguration --logger trx --no-build'
 			}
 		}
 		
