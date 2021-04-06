@@ -19,8 +19,7 @@ pipeline {
         }
 		
 		stage('Push packages') {
-			sh  'dotnet nuget push TGS.Core.Infrastructu
-res.Json/bin/$BuildConfiguration/*.nupkg **/TGS*.nupkg --source "gitlab" --skip-duplicate'
+			sh  'dotnet nuget push TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg **/TGS*.nupkg --source "gitlab" --skip-duplicate'
 		}
 	}			
 }
