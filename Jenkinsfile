@@ -15,9 +15,7 @@ pipeline {
 
 		stage('Test') {
 			steps {
-				sh 'dotnet test TGS.Core.Infrastructures.Json.sln --logger \"trx;LogFileName=unit_tests.xml\" --no-build'
-
-				step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
+				sh 'dotnet test TGS.Core.Infrastructures.Json.sln -c $BuildConfiguration --logger trx --no-build'
 			}
 		}
 		
@@ -27,5 +25,10 @@ pipeline {
 				sh 'dotnet nuget push "TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg" --source "raypro" --skip-duplicate'
 			}
 		}
-	}			
+	}
+	post {
+		always {
+			step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: false, keepLongStdio: true])
+		}
+	}
 }
