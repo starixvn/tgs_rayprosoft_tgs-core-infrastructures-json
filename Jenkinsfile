@@ -5,11 +5,11 @@ pipeline {
 		gitlab_user_pwd=credentials('gitlab-user-pwd')
         BuildConfiguration="Debug"
 	}
-	
+
     stages {
         stage('Clone') {
 			steps {
-				git branch: "develop", url: 'https://gitlab.com/rayprosoft/tgs-core-infrastructures-json.git' , credentialsId: 'gitlab-user-pwd'
+				git branch: "main", url: 'https://gitlab.com/rayprosoft/tgs-core-infrastructures-json.git' , credentialsId: 'gitlab-user-pwd'
 			}
 		}
 
