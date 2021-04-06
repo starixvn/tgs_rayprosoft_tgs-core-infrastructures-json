@@ -3,8 +3,9 @@ pipeline {
 	
 	environment {
 		gitlab_user_pwd=credentials('gitlab-user-pwd')
-        BuildConfiguration=Debug
+        BuildConfiguration="Debug"
 	}
+	
     stages {
         stage('Clone') {
 			steps {
@@ -14,12 +15,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'dotnet pack -c $BuildConfiguration ./TGS.Core.Infrastructures.Json/TGS.Core.Infrastructures.Json.csproj'
+                sh 'dotnet pack -c $BuildConfiguration "./TGS.Core.Infrastructures.Json/TGS.Core.Infrastructures.Json.csproj"'
             }
         }
 		
 		stage('Push packages') {
-			sh  'dotnet nuget push TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg **/TGS*.nupkg --source "gitlab" --skip-duplicate'
+			steps {
+				sh  'dotnet nuget push "TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg" **/TGS*.nupkg --source "gitlab" --skip-duplicate'
+			}
 		}
 	}			
 }
