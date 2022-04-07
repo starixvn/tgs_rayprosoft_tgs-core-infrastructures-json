@@ -22,7 +22,7 @@ pipeline {
 		stage('Push packages') {
 			steps {
 				sh 'dotnet pack -c $BuildConfiguration "./TGS.Core.Infrastructures.Json/TGS.Core.Infrastructures.Json.csproj" --no-build'
-				sh 'dotnet nuget push "TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg" --source "raypro" --skip-duplicate'
+				sh 'dotnet nuget push "TGS.Core.Infrastructures.Json/bin/$BuildConfiguration/*.nupkg" -s raypro-baget -k admin --skip-duplicate'
 			}
 		}
 	}
